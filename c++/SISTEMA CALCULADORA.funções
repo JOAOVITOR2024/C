@@ -1,0 +1,115 @@
+#include <iostream>
+using namespace std;
+float soma(float num1, float num2){
+	return (num1 + num2);
+}
+float soma(float num1, float num2, float num3){
+	return (num1 + num2 + num3);
+}
+float subtracao(float num1, float num2){
+	return (num1 - num2);
+}
+float multiplicacao(float num1, float num2){
+	return (num1 * num2);
+}
+float divisao(float num1, float num2){
+	return (num1 / num2);
+}
+bool numeropar(int num){
+	if(num%2==0){
+		return true;
+	}else{
+		return false;
+	}
+}
+int fatorial(int num){
+          int resultado = 1;
+          for (int i = 1; i<=num; i++){
+          	resultado *= i;
+		  }
+		return resultado;
+}
+string mensagem(){
+	return "Obrigado por usar o sistema!! \n";
+}
+int main() {
+	int op, qtd, nf;
+	float n1=0, n2=0, n3=0;
+	do{
+		cout << "+======= Menu =======+ \n";
+		cout << "| 1 - Soma           | \n";
+		cout << "| 2 - Subtracao      | \n";
+		cout << "| 3 - Multiplicacao  | \n";
+		cout << "| 4 - Divisao        | \n";
+		cout << "| 5 - Numero Par     | \n";		
+		cout << "| 6 - fatorial           | \n";
+		cout << "+====================+ \n";
+		cout << "Escolha uma opcao: ";
+		cin >> op;
+		if(op<5){
+			if(op==1){
+				cout<<"Quantos numeros voce quer somar, dois ou tres? ";
+				cin >> qtd;
+				if(qtd==2){
+				cout << "Informe o primeiro numero \n";
+				cin >> n1;
+				cout << "Informe o segundo numero \n";
+				cin >> n2;
+				}else{
+					cout << "Informe o primeiro numero \n";
+					cin >> n1;
+					cout << "Informe o segundo numero \n";
+					cin >> n2;
+					cout << "Informe o terceiro numero \n";
+					cin >> n3;
+				}
+			}else{
+				cout << "Informe o primeiro numero \n";
+				cin >> n1;
+				cout << "Informe o segundo numero \n";
+				cin >> n2;
+			}
+		}
+		switch(op){
+			case 1:
+			  cout << "Soma \n";
+			  if(qtd==2)
+			  	cout << "Resultado: " << soma(n1,n2) << endl;
+			  else
+			  	cout << "Resultado: " << soma(n1,n2,n3) << endl;
+			  break;
+			case 2:
+			  cout << "Subtracao \n";
+			  cout << "Resultado: " << subtracao(n1,n2) << endl;
+				break;
+			case 3:
+			  cout << "Multiplicacao \n";
+			  cout << "Resultado: " << multiplicacao(n1,n2) << endl;
+				break;
+			case 4:
+			  cout << "Divisao \n";
+			  cout << "Resultado: " << divisao(n1,n2) << endl;
+				break;
+			case 5:
+				cout << "Qual o numero? \n";
+				cin >> n1;
+				if (numeropar(n1)) 
+					cout << "Par \n";
+				else
+					cout << "Nao e par \n";
+				break;
+			case 6:
+				cout << "informe o numero : ";
+				cin >> nf;
+				cout << "\no fatorial desse numero e: " << fatorial(nf) << endl;
+			case 7:
+				cout << mensagem();
+				break;
+			default:
+				cout << "\n Opcao Invalida!! \n";
+				break;
+		}
+    }while(op != 6);
+ 
+	return 0;
+}
