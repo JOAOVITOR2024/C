@@ -32,67 +32,88 @@ int main() {
         cin >> op;
 
         switch (op) {
-            case 1:
-                if (i < tamanho) {
-                    cout << "Digite as seguintes informacoes do produto:\n";
-                    cout << "Codigo: ";
-                    cin >> matriz[i][0];
-                    cout << "Estoque: ";
-                    cin >> matriz[i][1];
-                    cout << "Preco: ";
-                    cin >> matriz[i][2];
+          case 1:
+    if (i < tamanho) {
+        int codigoNovo;
+        bool codigoJaExiste = false;
 
-                    if (cadastro_completo(matriz, tamanho, i)) {
-                        cout << "Cadastro realizado com sucesso!" << endl;
-                        i++;
-                    } else {
-                        cout << "Cadastro incompleto. Preencha todas as informações." << endl;
-                    }
-                } else {
-                    cout << "Estoque cheio\n";
-                }
+        cout << "Digite as seguintes informacoes do produto:\n";
+        cout << "Codigo: ";
+        cin >> codigoNovo;
+        for (int f = 0; f < i; f++) {
+            if (matriz[f][0] == codigoNovo) {
+                codigoJaExiste = true;
                 break;
+            }
+        }
 
-            case 2:
-                cout << "Digite o codigo do produto que deseja atualizar: ";
-                cin >> produto_escolhido;
+        if (codigoJaExiste) {
+            cout << "Produto com esse codigo ja existe. Cadastro nao realizado." << endl;
+        } else {
+            cout << "Estoque: ";
+            cin >> matriz[i][1];
+            cout << "Preco: ";
+            cin >> matriz[i][2];
 
-                for (int f = 0; f < i; f++) {
-                    if (matriz[f][0] == produto_escolhido) {
-                        cout << "Existem " << matriz[f][1] << " unidades desse produto no estoque\n";
-                        cout << "1-remover 2-adicionar\n";
-                        cin >> op2;
+            matriz[i][0] = codigoNovo;
 
-                        switch (op2) {
-                            case 1:
-                                cout << "Quantos produtos serao removidos? ";
-                                cin >> remover;
+            if (cadastro_completo(matriz, tamanho, i)) {
+                cout << "Cadastro realizado com sucesso!" << endl;
+                i++;
+            } else {
+                cout << "Cadastro incompleto. Preencha todas as informações." << endl;
+            }
+        }
+    } 
+    else {
+        cout << "Estoque cheio\n";
+    }
+    break;
 
-                                if (remover <= matriz[f][1]) {
-                                    matriz[f][1] -= remover;
-                                    cout << "Quantidade removida\n";
-                                    cout << "Este produto possui " << matriz[f][1] << " unidades no estoque\n";
-                                } else {
-                                    cout << "Saldo insuficiente\n";
-                                }
-                                break;
 
-                            case 2:
-                                cout << "Quantos produtos serao adicionados? ";
-                                cin >> adicionar;
-                                matriz[f][1] += adicionar;
-                                cout << "Este produto possui " << matriz[f][1] << " unidades no estoque\n";
-                                break;
+        case 2:
+        cout << "Digite o codigo do produto que deseja atualizar: ";
+        cin >> produto_escolhido;
 
-                            default:
-                                cout << "Opcao invalida\n";
-                                break;
+         for (int f = 0; f < i; f++) {
+             if (matriz[f][0] == produto_escolhido) {
+                cout << "Existem " << matriz[f][1] << " unidades desse produto no estoque\n";
+                cout << "1-remover 2-adicionar\n";
+                cin >> op2;
+
+        switch (op2) {
+                case 1:
+                cout << "Quantos produtos serao removidos? ";
+                cin >> remover;
+
+                    if (remover <= matriz[f][1]) {
+                     matriz[f][1] -= remover;
+                    
+                    cout << "Quantidade removida\n";
+                    cout << "Este produto possui " << matriz[f][1] << " unidades no estoque\n";
+                        } 
+                    else {
+                       cout << "Saldo insuficiente\n";
+                        }
+                   break;
+
+                case 2:
+                    cout << "Quantos produtos serao adicionados? ";
+                    cin >> adicionar;
+                    matriz[f][1] += adicionar;
+                    cout << "Este produto possui " << matriz[f][1] << " unidades no estoque\n";
+                    
+                    break;
+
+                    default:
+                    cout << "Opcao invalida\n";
+                    break;
                         }
                     }
                 }
                 break;
 
-            case 3:
+        case 3:
                 if (i > 0) {
                     cout << "Relatorio de Produtos:\n";
                     for (int a = 0; a < i; a++) {
@@ -107,29 +128,28 @@ int main() {
                 }
                 break;
 
-            case 4:
-                cout << "Digite a quantidade minima de saldo: ";
-                cin >> minima;
-
-                cout << "Produtos com estoque menor que o minimo:\n";
-                for (int f = 0; f < i; f++) {
-                    if (matriz[f][1] < minima) {
-                        cout << "Codigo " << matriz[f][0] << endl;
-                    }
+        case 4:
+          cout << "Digite a quantidade minima de saldo: ";
+          cin >> minima;
+          
+          cout << "Produtos com estoque menor que o minimo:\n";
+            for (int f = 0; f < i; f++) {
+               if (matriz[f][1] < minima) {
+                cout << "Codigo " << matriz[f][0] << endl;
                 }
+            }
                 break;
 
-            case 5:
-                cout << "Obrigado por usar nosso sistema!\n";
-                break;
+        case 5:
+          cout << "Obrigado por usar nosso sistema!\n";
+          break;
 
-            default:
-                cout << "Opcao invalida!\n";
-                break;
+        default:
+            cout << "Opcao invalida!\n";
+            break;
         }
 
     } while (op != 5);
 
     return 0;
 }
-
