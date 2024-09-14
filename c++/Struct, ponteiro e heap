@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+struct disciplinas {
+    string nome;
+    string dia;
+    int hora;
+};
+
+struct CadastroAluno {
+    string nome;
+    int ra;
+    string curso;
+    disciplinas Disciplina[3];
+};
+
+int main(int argc, char *argv[]) {
+    int contador;
+
+    cout << "Quantos alunos serao cadastrados? ";
+    cin >> contador;
+
+    CadastroAluno *vetor_alunos = new CadastroAluno[contador];
+
+    for (int x = 0; x < contador; x++) {
+        cout << "Digite o nome do aluno: ";
+        cin >> vetor_alunos[x].nome;
+        cout << "Digite o RA: ";
+        cin >> vetor_alunos[x].ra;
+        cout << "Digite o curso: ";
+        cin >> vetor_alunos[x].curso;
+
+    for (int i = 0; i < 2; i++) {
+        cout << "Digite o nome da disciplina: ";
+        cin >> vetor_alunos[x].Disciplina[i].nome;
+        cout << "Digite o dia da disciplina: ";
+        cin >> vetor_alunos[x].Disciplina[i].dia;
+        cout << "Digite a hora da disciplina: ";
+        cin >> vetor_alunos[x].Disciplina[i].hora;
+        }
+    }
+
+    for (int x = 0; x < contador; x++) {
+    	cout<<"\nALUNO "<< x+1;
+        cout << "\nNome do aluno: " << vetor_alunos[x].nome << endl;
+        cout << "RA: " << vetor_alunos[x].ra << endl;
+        cout << "Curso: " << vetor_alunos[x].curso << endl;
+    
+    for (int i = 0; i < 2; i++) {
+        cout << "Disciplina " << i+1 << ": " << vetor_alunos[x].Disciplina[i].nome << endl;
+        cout << "Dia: " << vetor_alunos[x].Disciplina[i].dia << endl;
+        cout << "Hora: " << vetor_alunos[x].Disciplina[i].hora << endl;
+        }
+         cout<<"---------------------------------------";
+    }
+    delete[] vetor_alunos;
+
+    return 0;
+}
